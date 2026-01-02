@@ -155,5 +155,4 @@ http://localhost:5173
 
 This project is developed for academic and learning purposes.
 
-```
 
