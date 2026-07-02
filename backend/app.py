@@ -43,6 +43,19 @@ def get_aqi_category(value):
     else:
         return "Good"
 
+
+@app.route("/")
+def home():
+    return jsonify({
+        "message": "AirQForecast Backend is running!",
+        "status": "success",
+        "endpoints": [
+            "/api/air/current",
+            "/api/air/history",
+            "/api/air/summary",
+            "/api/air/alerts"
+        ]
+    })
 # ----------------------------
 # API: CURRENT AIR QUALITY
 # ----------------------------
