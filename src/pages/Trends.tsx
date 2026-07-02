@@ -15,7 +15,7 @@ const Trends = () => {
   const [data, setData] = useState<any[]>([]);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:5000/api/air/history")
+    fetch("https://airqforecast-backend.onrender.com/api/air/history")
       .then((res) => res.json())
       .then((apiData) => setData(apiData))
       .catch((err) => console.error("History API error:", err));
