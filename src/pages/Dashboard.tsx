@@ -13,7 +13,7 @@ const Dashboard = () => {
   });
 
   useEffect(() => {
-    fetch("http://127.0.0.1:5000/api/air/current")
+    fetch("https://airqforecast-backend.onrender.com/api/air/current")
       .then((res) => res.json())
       .then((data) => {
         setCurrentAQI(data.currentAQI);
