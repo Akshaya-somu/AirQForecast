@@ -34,7 +34,7 @@ const Summary = () => {
 
   /* -------- FETCH SUMMARY FROM BACKEND -------- */
   useEffect(() => {
-    fetch("http://127.0.0.1:5000/api/air/summary")
+    fetch("https://airqforecast-backend.onrender.com/api/air/summary")
       .then((res) => res.json())
       .then((data) => setSummaryData(data))
       .catch((err) => console.error("Summary API error:", err));
