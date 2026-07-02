@@ -3,6 +3,9 @@
 **AirQForecast** is a full-stack web application designed to monitor, analyze, and predict urban air quality using machine learning.  
 The system provides real-time AQI values, pollutant-level insights, alerts, trend analysis, and a daily summary through an interactive dashboard.
 
+🚀Demo link :
+https://airqforecast.onrender.com/
+
 This project integrates a modern React frontend with a Python Flask backend and a trained machine learning model.
 
 ---
