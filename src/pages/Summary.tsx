@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getAQICategory, dailyTrends } from "@/data/mockData";
+import { getAQICategory} from "@/data/mockData";
 import { cn } from "@/lib/utils";
 import {
   BarChart,
