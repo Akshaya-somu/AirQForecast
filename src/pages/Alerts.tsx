@@ -32,7 +32,7 @@ const Alerts = () => {
 
   /* -------- FETCH FROM BACKEND -------- */
   useEffect(() => {
-    fetch("http://127.0.0.1:5000/api/air/alerts")
+    fetch("https://airqforecast-backend.onrender.com/api/air/alerts")
       .then((res) => res.json())
       .then((data) => {
         const formatted = data.map((a: any) => ({
