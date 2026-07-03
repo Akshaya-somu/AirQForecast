@@ -40,16 +40,20 @@ const Summary = () => {
 
   /* -------- FETCH SUMMARY FROM BACKEND -------- */
   useEffect(() => {
-  Promise.all([
-    fetch("https://airqforecast-backend.onrender.com/api/air/summary").then((res) => res.json()),
-    fetch("https://airqforecast-backend.onrender.com/api/air/history").then((res) => res.json()),
-  ])
-    .then(([summary, history]) => {
-      setSummaryData(summary);
-      setHistoryData(history);
-    })
-    .catch((err) => console.error("Summary API error:", err));
-}, []);
+    Promise.all([
+      fetch("https://airqforecast-backend.onrender.com/api/air/summary").then(
+        (res) => res.json(),
+      ),
+      fetch("https://airqforecast-backend.onrender.com/api/air/history").then(
+        (res) => res.json(),
+      ),
+    ])
+      .then(([summary, history]) => {
+        setSummaryData(summary);
+        setHistoryData(history);
+      })
+      .catch((err) => console.error("Summary API error:", err));
+  }, []);
 
   /* -------- LOADING SAFETY -------- */
   if (!summaryData) return null;
