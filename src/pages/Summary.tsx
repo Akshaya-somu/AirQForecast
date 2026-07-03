@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getAQICategory} from "@/data/mockData";
+import { getAQICategory } from "@/data/mockData";
 import { cn } from "@/lib/utils";
 import {
   BarChart,
@@ -27,16 +27,27 @@ type SummaryData = {
   overallStatus: string;
 };
 
+type HistoryPoint = {
+  time: string;
+  aqi: number;
+};
+
 /* ---------------- COMPONENT ---------------- */
 
 const Summary = () => {
   const [summaryData, setSummaryData] = useState<SummaryData | null>(null);
+  const [historyData, setHistoryData] = useState<HistoryPoint[]>([]);
 
   /* -------- FETCH SUMMARY FROM BACKEND -------- */
   useEffect(() => {
-    fetch("https://airqforecast-backend.onrender.com/api/air/summary")
-      .then((res) => res.json())
-      .then((data) => setSummaryData(data))
+    Promise.all([
+      fetch("/api/air/summary").then((res) => res.json()),
+      fetch("/api/air/history").then((res) => res.json()),
+    ])
+      .then(([summary, history]) => {
+        setSummaryData(summary);
+        setHistoryData(history);
+      })
       .catch((err) => console.error("Summary API error:", err));
   }, []);
 
@@ -46,9 +57,9 @@ const Summary = () => {
   const category = getAQICategory(summaryData.dailyAverageAQI);
 
   /* -------- BAR CHART DATA -------- */
-  const hourlyData = dailyTrends.slice(-12).map((item, index) => ({
-    ...item,
-    hour: `${index + 1}h`,
+  const hourlyData = historyData.slice(-12).map((item) => ({
+    hour: item.time,
+    aqi: item.aqi,
   }));
 
   const getBarColor = (aqi: number) => {
@@ -77,7 +88,7 @@ const Summary = () => {
               className={cn(
                 "text-sm font-medium px-2 py-1 rounded-full",
                 category.bgColor,
-                "text-primary-foreground"
+                "text-primary-foreground",
               )}
             >
               {category.label}
